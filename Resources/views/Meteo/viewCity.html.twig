@@ -1,0 +1,59 @@
+{% extends 'MeteoBundle:Meteo:layout.html.twig' %}
+
+{% block title %}
+	{{ data.city.name }} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="jumbotron" style="background: url('{{ app.request.basepath }}/bundles/meteo/images/{{ data.list[day].weather.0.main }}.jpg') no-repeat center;">
+		<header>
+			<h1>{{ data.city.name }}</h1>
+		</header>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<ul class="list-group">
+				<a href="{{ path('meteo_view_city', {'city': data.city.name, 'day': 0}) }}" class="list-group-item {% if day == 0 %}active{% endif %}">
+					<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+					Today
+				</a>
+				<a href="{{ path('meteo_view_city', {'city': data.city.name, 'day': 1}) }}" class="list-group-item {% if day == 8 %}active{% endif %}">
+					<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+					Tomorrow
+				</a>
+				<a href="{{ path('meteo_view_city', {'city': data.city.name, 'day': 2}) }}" class="list-group-item {% if day == 16 %}active{% endif %}">
+					<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+					{{ daysNames.0 }}
+				</a>
+				<a href="{{ path('meteo_view_city', {'city': data.city.name, 'day': 3}) }}" class="list-group-item {% if day == 24 %}active{% endif %}">
+					<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+					{{ daysNames.1 }}
+				</a>
+				<a href="{{ path('meteo_view_city', {'city': data.city.name, 'day': 4}) }}" class="list-group-item {% if day == 32 %}active{% endif %}">
+					<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+					{{ daysNames.2 }}
+				</a>
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<p>
+				<h2>Weather : </h2>
+			    {{ data.list[day].weather.0.main }}
+			</p>
+		</div>
+		<div class="col-md-3">
+			<p>
+				<h2>Temperature : </h2>
+			    {{ data.list[day].main.temp }} °C
+			</p>
+		</div>
+		<div class="col-md-3">
+			<p>
+				<h2>Humidity : </h2>
+			    {{ data.list[day].main.humidity }} %
+			</p>
+		</div>
+	</div>
+	
+	
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="{{ app.request.basepath }}/bundles/meteo/bootstrap/css/bootstrap.min.css"/>
+		<title>{% block title %}MeteoBundle{% endblock %}</title>
+	</head>
+	<body>
+		<div class="container" style="padding-top: 60px">
+				
+		    {% block body %}
+					
+			{% endblock %}
+						
+			<form method="post" action="{{ path('meteo_home') }}">
+				
+			</form>
+			
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<ul class="nav navbar-nav">
+					<li><a href="{{ path('meteo_home') }}">Home</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '2988507'}) }}">Paris</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '2643743'}) }}">London</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '5128581'}) }}">New-York</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '1850147'}) }}">Tokyo</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '3128760'}) }}">Barcelona</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '2147714'}) }}">Sydney</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '3469058'}) }}">Brasilia</a></li>
+					<li><a href="{{ path('meteo_view_city', {'city': '6077243'}) }}">Montreal</a></li>
+				</ul>
+				
+				<form method="post" action="{{ path('meteo_home') }}" class="navbar-form pull-right inline-form">
+					<input type="search" class ="input-sm form-control" name="city">
+					<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+				</form>
+				
+				<form id="formGPS" method="post" action="{{ path('meteo_home') }}" class="navbar-form pull-right inline-form">
+					<button type="submit" id="buttonGPS" class="btn btn-primary btn-sm">
+						<i class="glyphicon glyphicon-map-marker"></i>
+					</button>
+					
+					<input type="hidden" name="lat" id="lat"/>
+					<input type="hidden" name="lng" id="lng"/>
+					<input type="hidden" name="error" id="error"/>
+				</form>
+			</nav>
+			
+			<footer>
+				<script src="{{ app.request.basepath }}/bundles/meteo/bootstrap/js/bootstrap.min.js"></script>
+				<script src="{{ app.request.basepath }}/bundles/meteo/scripts/geolocalisation.js"></script>
+			</footer>
+		</div>
+	</body>
+</html>

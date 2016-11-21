@@ -1,0 +1,21 @@
+meteo_home:
+    path: /
+    defaults:
+        _controller: MeteoBundle:Meteo:home
+
+meteo_view_city:
+    path: /viewCity/{city}/{day}
+    defaults:
+        _controller: MeteoBundle:Meteo:viewCity
+        day: 0
+    requirements:
+        day: '[0-4]{1}'
+        
+meteo_view_coord:
+    path: /viewCoord/lat={lat}lon={lon}/{day}
+    defaults:
+        _controller: MeteoBundle:Meteo:viewCoord
+        day: 0
+    requirements:
+        day: '[0-4]{1}'
+        
