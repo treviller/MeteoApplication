@@ -79,18 +79,18 @@ class MeteoController extends Controller
 	 * @param float $lon
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
 	 */
-	public function checkCacheOrRequest(Request $request, $function, $cityOrLat, $lon=null)
+	protected function checkCacheOrRequest(Request $request, $function, $cityOrLat, $lon=null)
 	{
 		$cache = new FilesystemAdapter();
 		
-		if($lon != null)
+		if($lon !== null)
 			$dataCityCached = $cache->getItem('data'.$cityOrLat.$lon);
 		else
 			$dataCityCached = $cache->getItem('data'.$cityOrLat);
 		
 		if(!$dataCityCached->isHit())
 		{
-			if($lon != null)
+			if($lon !== null)
 				$dataCity = $this->container->get('meteo.open_weather_api')->$function($cityOrLat, $lon);
 			else
 			{
@@ -119,7 +119,7 @@ class MeteoController extends Controller
 	 * 
 	 * @return array
 	 */
-	public function createDaysNames()
+	protected function createDaysNames()
 	{
 		$date = new \Datetime();
 		$daysNames = array();
@@ -134,3 +134,4 @@ class MeteoController extends Controller
 		return $daysNames;
 	}
 }
+

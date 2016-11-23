@@ -2,7 +2,7 @@
 namespace MeteoBundle\OpenWeatherMapInterface;
 
 use Symfony\Component\BrowserKit\Client as BaseClient;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleClient;
 
 
 class Client extends BaseClient
@@ -28,7 +28,7 @@ class Client extends BaseClient
 	
 	protected function getClient()
 	{
-		return new Client(array('base_uri' => $this->baseURI));
+		return new GuzzleClient(array('base_uri' => $this->baseURI));
 	}
 	
 	public function setBaseURI($baseURI)
@@ -36,3 +36,4 @@ class Client extends BaseClient
 		$this->baseURI = $baseURI;
 	}
 }
+

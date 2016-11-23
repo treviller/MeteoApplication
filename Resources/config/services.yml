@@ -2,3 +2,4 @@
 services:
     meteo.open_weather_api:
         class: MeteoBundle\OpenWeatherMapInterface\OpenWeatherAPI
+        
