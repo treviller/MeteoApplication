@@ -24,7 +24,16 @@ class MeteoController extends Controller
 				return $this->redirectToRoute('meteo_view_coord', array('lat' => $request->get('lat'), 'lon' => $request->get('lng')));
 			}
 			else
-				return $this->redirectToRoute('meteo_view_city', array('city' => $request->get('city')));
+			{
+				if($request->get('city') !="")
+				{
+					return $this->redirectToRoute('meteo_view_city', array('city' => $request->get('city')));
+				}
+				else
+				{
+					$request->getSession()->getFlashbag()->add('warning', 'You must specify a city in the search bar !');
+				}
+			}
 		}
 		return $this->render('MeteoBundle:Meteo:home.html.twig');
 	}
